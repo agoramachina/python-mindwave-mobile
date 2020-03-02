@@ -21,7 +21,7 @@ class PoorSignalLevelDataPoint(DataPoint):
         return self.amountOfNoise < 200;
 
     def __str__(self):
-        poorSignalLevelString = "Poor Signal Level: " + str(self.amountOfNoise)
+        poorSignalLevelString = str(self.amountOfNoise)
         if (not self.headSetHasContactToSkin()):
             poorSignalLevelString += " - NO CONTACT TO SKIN"
         return poorSignalLevelString
@@ -32,7 +32,7 @@ class AttentionDataPoint(DataPoint):
         self.attentionValue = self._dataValueBytes[0] 
 
     def __str__(self):
-        return "Attention Level: " + str(self.attentionValue)
+        return str(self.attentionValue)
 
 class MeditationDataPoint(DataPoint):
     def __init__(self, _dataValueBytes):
@@ -40,7 +40,7 @@ class MeditationDataPoint(DataPoint):
         self.meditationValue = self._dataValueBytes[0]
 
     def __str__(self):
-        return "Meditation Level: " + str(self.meditationValue)
+        return "" + str(self.meditationValue)
 
 class BlinkDataPoint(DataPoint):
     def __init__(self, _dataValueBytes):
@@ -66,7 +66,7 @@ class RawDataPoint(DataPoint):
         return rawValue # hope this is correct ;)
 
     def __str__(self):
-        return "Raw Value: " + str(self.rawValue)
+        return "" + str(self.rawValue)
 
 class EEGPowersDataPoint(DataPoint):
     def __init__(self, dataValueBytes):
@@ -96,13 +96,12 @@ class EEGPowersDataPoint(DataPoint):
         return bigEndianInteger
         
     def __str__(self):
-        return """EEG Powers:
-                delta: {self.delta}
-                theta: {self.theta}
-                lowAlpha: {self.lowAlpha}
-                highAlpha: {self.highAlpha}
-                lowBeta: {self.lowBeta}
-                highBeta: {self.highBeta}
-                lowGamma: {self.lowGamma}
-                midGamma: {self.midGamma}
+        return """{self.delta}
+                {self.theta}
+                {self.lowAlpha}
+                {self.highAlpha}
+                {self.lowBeta}
+                {self.highBeta}
+                {self.lowGamma}
+                {self.midGamma}
                 """.format(self = self)
